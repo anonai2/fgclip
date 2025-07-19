@@ -1,4 +1,4 @@
-# 📘 FGCLIP: Fine-Grained Text-Aware VLM via Hard Negatives
+# 📘 Teaching Vision-Language Models to Read: Character-level Contrastive Learning for Fine-Grained Text Recognition
 
 This repository contains the code for our anonymous submission to **[WACV 2026]** on improving fine-grained OCR understanding in vision-language models (VLMs) via contrastive learning with character-level hard negatives.
 
