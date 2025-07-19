@@ -14,7 +14,7 @@ cd fgclip
 pip install -r requirements.txt
 ```
 ## Training datasets construction
-1. Download SynthTIGER data and place Synthtiger folder under ./data
+1. Download SynthTIGER data and place Synthtiger folder under ./data : https://github.com/clovaai/synthtiger
 2. Generate character-level hard negatives:
 ```bash
 cd data
@@ -29,7 +29,7 @@ fgclip/scripts/hn_far_clip.sh
 
 
 ## 📊 Evaluate with OCRBench-FG
-1. Download OCRBench-V2
+1. Download OCRBench-V2 : https://github.com/Yuliang-Liu/MultimodalOCR
 2. Run evaluation:
 ```bash
 cd fgclip
