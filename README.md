@@ -13,20 +13,34 @@ git clone https://github.com/anonai2/fgclip.git
 cd fgclip
 pip install -r requirements.txt
 ```
-
+## Training datasets construction
+1. Download SynthTIGER data and place Synthtiger folder under ./data
+2. Generate character-level hard negatives:
+```bash
+cd data
+python ./train/make_hn.py
+```
 
 ## 🚀 Training
 ```bash
 cd src
-home/wacv_fgclip/fgclip/scripts/hn_far_clip.sh
+fgclip/scripts/hn_far_clip.sh
 ```
 
 
-## 📊 Evaluation
+## 📊 Evaluate with OCRBench-FG
+1. Download OCRBench-V2
+2. Run evaluation:
 ```bash
-pip install -r requirements.txt
+cd fgclip
+python ./test/clip_ocrbench_fg.py
 
 ```
+
+## 📦 Pretrained Models and Processed Datasets
+We plan to release the following resources after the review process is completed.
+- Model checkpoints
+- Processed training dataset with character-level hard negatives (.json format)
 
 ## 📜 License
 This project is licensed under the MIT License.  
@@ -38,3 +52,6 @@ It also uses the following datasets which are provided under the MIT License:
 ## 🙊 Anonymous Submission
 This repository is anonymized for blind review. 
 Please do not contact the authors untill the review process is complete.
+
+
+
