@@ -19,9 +19,9 @@ def create_blip_model_and_transforms(pretrained=True, precision="fp32", device="
     # model = BlipForImageTextRetrieval.from_pretrained("Salesforce/blip-itm-base-coco", from_tf=True)
     
 
-    custom_ckpt_path = None  # None이면 기본 모델 사용, 경로 지정 시 커스텀 체크포인트 로드
+    custom_ckpt_path = None  # None if you want to use the pretrained model
     
-    custom_ckpt_path = "/fgclip/src/logs/blip_hn_far_lr_1e_4/checkpoints/epoch_3.pt"
+    custom_ckpt_path = "/fgclip/src/logs/blip_hn_far_lr_1e_4/checkpoints/epoch_3.pt" #checkpotint path to test
 
     if custom_ckpt_path:
         print(f"🔄 Loading fine-tuned weights from: {custom_ckpt_path}")
@@ -124,5 +124,5 @@ def evaluate_blip_itc(file_path, debug_samples=10):
     print(f"📊 Total evaluated samples: {total_samples}")
 
 
-# 사용 예시
+# usage
 evaluate_blip_itc("/fgclip/OCRbench-FG/ocrbench_fg.txt")

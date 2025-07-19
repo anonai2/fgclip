@@ -8,14 +8,11 @@ from tqdm import tqdm
 import torch.nn.functional as F
 # os.environ["CUDA_VISIBLE_DEVICES"] = "3" 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-
-    
+   
     
 def get_embeddings(image_path, text_candidates):
     image = Image.open(image_path).convert("RGB")
 
-    # 👉 이미지 인코딩 + projection
     image_inputs = processor(images=image, return_tensors="pt").to(device)
     with torch.no_grad():
         image_outputs = model.image_model(
@@ -27,7 +24,7 @@ def get_embeddings(image_path, text_candidates):
         image_emb = model.image_projection(cls_image)
         image_emb = F.normalize(image_emb, dim=-1)
 
-    # 👉 텍스트 인코딩 + projection
+
     text_inputs = processor(text=text_candidates, return_tensors="pt", padding=True).to(device)
     with torch.no_grad():
         text_outputs = model.text_model(
@@ -48,8 +45,6 @@ def evaluate_flava_tsv(tsv_path, verbose=True):
 
     with open(tsv_path, "r", encoding="utf-8") as f:
         lines = f.readlines()
-
-    # tqdm으로 전체 라인 진행률 표시
     for i, line in enumerate(tqdm(lines, desc="Evaluating FLAVA")):
         parts = line.strip().split("\t")
         if len(parts) != 3:
@@ -108,7 +103,7 @@ model.eval()
 
 ckpt_path = "/fgclip/src/logs/flava_hn_far/checkpoints/epoch_3.pt"
 
-
+#if you want to use the pretrained model, comment out the following part
 try:
     checkpoint = torch.load(ckpt_path, map_location=device, weights_only=False)
     state_dict = checkpoint["state_dict"]
@@ -129,5 +124,5 @@ try:
 except Exception as e:
     print(f"❌ Failed to load custom weights: {e}")
     
-    
-# evaluate_flava_tsv("/fgclip/OCRbench-FG/ocrbench_fg.txt", verbose=True)
+# if you want to use the pretrained model without fine-tuning, comment out the above loading part   
+evaluate_flava_tsv("/fgclip/OCRbench-FG/ocrbench_fg.txt", verbose=True)

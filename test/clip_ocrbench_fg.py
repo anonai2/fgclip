@@ -14,14 +14,13 @@ pretrained = "laion400m_e32"  # or "laion400m_e32"
 model, _, preprocess = open_clip.create_model_and_transforms(model_name, pretrained=pretrained)
 tokenizer = open_clip.get_tokenizer(model_name)
 
-# 2. Load fine-tuned weights
-ckpt_path = "/workspace/code/neg_clip/src/logs/all_hn_far_5epoch/checkpoints/epoch_2.pt"
+# 2. Load fine-tuned weights , #comment out this part if you want to use the pretrained model
+ckpt_path = "/workspace/code/neg_clip/src/logs/all_hn_far_5epoch/checkpoints/epoch_2.pt" #checkpoint path to test
 print(f"Loading checkpoint from {ckpt_path}")
 checkpoint = torch.load(ckpt_path, map_location="cpu", weights_only=False)
 
 state_dict = checkpoint["state_dict"]
 
-# Remove 'module.' prefix (from DataParallel)
 from collections import OrderedDict
 new_state_dict = OrderedDict()
 for k, v in state_dict.items():
@@ -29,6 +28,7 @@ for k, v in state_dict.items():
     new_state_dict[new_key] = v
 
 model.load_state_dict(new_state_dict, strict=False)
+#=================================================
 model.to(device)
 model.eval()
 
