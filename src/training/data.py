@@ -73,7 +73,7 @@ class JsonDataset(Dataset):
         self.captions = [item[caption_key] for item in self.data]
         self.hard_captions = [item[hard_captions_key].split(sep) for item in self.data]
         self.transforms = transforms
-        self.root_dir = "/home/work/cc_ocr/synthtiger/synthtiger_v1.0_data/synthtiger_v1.0"
+        self.root_dir = "fgclip/synthtiger/synthtiger_v1.0_data/synthtiger_v1.0"
         self.hn_index = hn_index  # index로 사용할 값 (0~3)
         logging.debug("Done loading Json data.")
         
@@ -110,7 +110,7 @@ class JsonDataset_Da(Dataset):
         self.captions = [item[caption_key] for item in self.data]
         self.hard_captions = [item[hard_captions_key].split(sep) for item in self.data]
         self.transforms = transforms
-        self.root_dir = "/home/work/cc_ocr/synthtiger/synthtiger_v1.0_data/synthtiger_v1.0"
+        self.root_dir = "fgclip/synthtiger/synthtiger_v1.0_data/synthtiger_v1.0"
         logging.debug("Done loading Json data.")
         
     def __len__(self):
@@ -139,7 +139,7 @@ class JsonDataset_Da_blip(Dataset):
         self.captions = [item[caption_key] for item in self.data]
         self.hard_captions = [item[hard_captions_key].split(sep) for item in self.data]
         self.processor = processor
-        self.root_dir = "/home/work/cc_ocr/synthtiger/synthtiger_v1.0_data/synthtiger_v1.0"
+        self.root_dir = "fgclip/synthtiger/synthtiger_v1.0_data/synthtiger_v1.0"
         logging.debug("Done loading Json data.")
 
     def __len__(self):
@@ -178,7 +178,7 @@ class JsonDataset_SigLIP(Dataset):
         self.captions = [item[caption_key] for item in self.data]
         self.hard_captions = [item[hard_captions_key].split(sep) for item in self.data]
         self.processor = processor
-        self.root_dir = "/home/work/cc_ocr/synthtiger/synthtiger_v1.0_data/synthtiger_v1.0"
+        self.root_dir = "fgclip/synthtiger/synthtiger_v1.0_data/synthtiger_v1.0"
 
     def __len__(self):
         return len(self.captions)
